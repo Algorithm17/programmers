@@ -13,7 +13,6 @@ struct Struct{
 
 int total;
 vector<int> vc;
-bool visited[21];
 
 void bfs(vector<int> numbers, int target, int plus_minus, int cnt){
     queue<Struct> q;
