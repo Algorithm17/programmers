@@ -36,6 +36,12 @@ void backtracking(string numbers,int num, int cnt, int len){
             result += pow(10,len-i) * arr[i];
         }
 
+<<<<<<< HEAD
+=======
+        // 이미 소수 인지 확인했다면 return
+        // 소수가 아니라면 return
+        // 소수 일 때 소수 확인 배열 인덱스(소수) 위치에 true 저장
+>>>>>>> d08_1
         if(check_arr[result]) return;
         if(!decimalcheck(result)) return;
         check_arr[result] = true;
@@ -54,6 +60,18 @@ void backtracking(string numbers,int num, int cnt, int len){
 int solution(string numbers) {
 
 
+<<<<<<< HEAD
+=======
+    // visited 방문 했는지 확인한다.
+    // 백 트랙킹을 사용한다.
+    // n 부터 시작하여 1 ~ n-1 까지 검사할 때
+    // 1, 2로 만들 수 있는 소수를 찾을 때 전체 데이터를 대상으로 검사를 한다.
+    // 이 때, 백 트랙킹을 사용하면 된다.
+    // 길이가 1 일 때, 1, 2까지
+    // 길이가 2 일 때, 12, 21
+
+
+>>>>>>> d08_1
     for(int i=1;i<=numbers.size();i++){
         for(int j=0; j< numbers.size();j++){
             if(visited[j]) continue;
