@@ -27,3 +27,10 @@
 | -------- | --------------------------------------------------------- | ---------------------------------------------------- |
 | 49189번   | [가장 먼 노드](https://programmers.co.kr/learn/courses/30/lessons/49189)       | [설명](https://blog.naver.com/yepp0517/222473123882) |
 | 49191번   | [순위](https://programmers.co.kr/learn/courses/30/lessons/49191)       | [설명](https://blog.naver.com/yepp0517/222473169118) |
+
+
+**힙(Heap)**
+| 문제번호 | page                                                      | 답지설명                                             |
+| -------- | --------------------------------------------------------- | ---------------------------------------------------- |
+| 42627번   | [디스크 컨트롤러](https://programmers.co.kr/learn/courses/30/lessons/42627)       | [설명](https://blog.naver.com/yepp0517/222477619768) |
+| 42626번   | [더 맵게](https://programmers.co.kr/learn/courses/30/lessons/42626)       | [설명](https://blog.naver.com/yepp0517/222477477885) |
