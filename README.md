@@ -17,14 +17,14 @@
 | 42895번   | [N으로 표현](https://programmers.co.kr/learn/courses/30/lessons/42895)       | [설명](https://blog.naver.com/yepp0517/222475917738) |
 
 
-**그래프**
+**완전 탐색**
 | 문제번호 | page                                                      | 답지설명                                             |
 | -------- | --------------------------------------------------------- | ---------------------------------------------------- |
 | 42839번   | [소수 찾기](https://programmers.co.kr/learn/courses/30/lessons/42839)       | [설명](https://blog.naver.com/yepp0517/222475030514) |
 | 42842번   | [카펫](https://programmers.co.kr/learn/courses/30/lessons/42842)       | [설명](https://blog.naver.com/yepp0517/222474960028) |
 
 
-**완전 탐색**
+**그래프**
 | 문제번호 | page                                                      | 답지설명                                             |
 | -------- | --------------------------------------------------------- | ---------------------------------------------------- |
 | 49189번   | [가장 먼 노드](https://programmers.co.kr/learn/courses/30/lessons/49189)       | [설명](https://blog.naver.com/yepp0517/222473123882) |
