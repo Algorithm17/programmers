@@ -41,5 +41,5 @@
 **정렬**
 | 문제번호 | page                                                      | 답지설명                                             |
 | -------- | --------------------------------------------------------- | ---------------------------------------------------- |
-| 42627번   | [가장 큰 수](https://programmers.co.kr/learn/courses/30/lessons/42746)       | [설명](https://blog.naver.com/yepp0517/222482006213) |
-| 42626번   | [H-Index](https://programmers.co.kr/learn/courses/30/lessons/42747)       | [설명](https://blog.naver.com/yepp0517/222482027519) |
+| 42626번   | [가장 큰 수](https://programmers.co.kr/learn/courses/30/lessons/42746)       | [설명](https://blog.naver.com/yepp0517/222482006213) |
+| 42627번   | [H-Index](https://programmers.co.kr/learn/courses/30/lessons/42747)       | [설명](https://blog.naver.com/yepp0517/222482027519) |
