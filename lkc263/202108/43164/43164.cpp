@@ -1,145 +1,110 @@
 #include <string>
 #include <vector>
-#include <iostream>
 #include <algorithm>
-#include <queue>
+#include <iostream>
 
 using namespace std;
 
-struct Struct{
-    int cur_index;
-    int cnt;
-};
+bool visited[10001];
+vector<string> total;
 
-// 제일 큰 수 ZZZ : 9990
-bool visited[9999][9999];
-
-vector<int> bfs(vector<vector<int>> vc, int idx){
-    queue<Struct> q; // 인덱스, 횟수
-
-    vector<int> total_result;
-    vector<int> cur_result;
-    for(int i=0;i<vc.size();i++){
-        total_result.push_back(0);
-    }
-    q.push({idx,0});
-    // 첫 번째 데이터 삽입
-    cur_result.push_back(vc[idx][0]);
-
-    while(!q.empty()){
-        Struct s = q.front();
-        q.pop();
+void dfs(vector<vector<string>> tickets, vector<string> answer, string start,int cnt){
+    // 시작하기에 앞 서, 시작 값을 answer에 삽입한다.
+    // ex) [ICE, ASE] 면은 ICE를 먼저 answer에 삽입하는 형태
+    answer.push_back(start);
 
 
-        if(s.cnt == vc.size()+1){
-            int i=0;
-            for(;i<vc.size()+1;i++){
-                if(total_result[i] < cur_result[i]) break;
-
-            }
-            if(i!=vc.size()+1) total_result = cur_result;
-        }
-
-        if(visited[vc[s.cur_index][0]][vc[s.cur_index][1]]) continue;
-        visited[vc[s.cur_index][0]][vc[s.cur_index][1]] = true;
-
-        // push 되는 데이터 넣는다.
-        cur_result.push_back(vc[s.cur_index][0]);
-
-
-        for(int i=0;i<vc.size();i++){
-
-            // 1 3
-            // 3 2
-            int first_data = vc[i][0];
-            int second_data = vc[i][1];   // 다음 데이터
-
-            if(visited[first_data][second_data]) continue;
-
-            for(int j=0;j<vc.size();j++){
-                if(i==j) continue;
-                if(visited[vc[j][0]][vc[j][1]]) continue;
-                if(vc[i][1] == vc[j][0]) q.push({j,s.cnt+1});
-            }
-        }
+    // 현재 횟수가 티켓 사이즈 횟수만큼 반복되었을 때
+    // 이미 알파벳 순으로 오름차순 정렬한 후, dfs를 실행하였기에
+    // 첫 번째로, 티켓 사이즈 횟수만큼 반복되었을 때 대입 후, 나간다.
+    if(cnt == tickets.size()){
+        total = answer;
+        return;
     }
 
-    return total_result;
+    for(int i=0;i<tickets.size();i++){
+        if(visited[i]) continue;
+        // 방문한 배열의 위치라면 continue, ex) 1번 ICN, SFO 2번 ICN, ATL ~
+        if(tickets[i][0] != start) continue;
+        // 현재 start 공항이 아니면 continue;
+        visited[i] = true;
 
+        // ex) [ICE, ASE] 면은 다음으로 확인하는 것은 ASE이다.
+        dfs(tickets, answer, tickets[i][1], cnt+1);
+
+        // 티켓 사이즈 횟수만큼 반복된 후, 결과 값이 저장되었을 때
+        // 종료한다.
+        if(!total.empty()) return;
+
+        // 위 소스를 통해 현재 인덱스는 검사를 맞쳤기에, 방문 하지 않은 곳으로 변경한다.
+        visited[i] = false;
+
+    }
+
+    // 위 for문 tickets[index]를 모두 검사한 후, tickets[index][1] 다음 차례 될 수 있는 것이 없다면
+    // tickets[index] 위치 검사는 끝이 난 것이다.
+    // answer 벡터에서 빼준다.
+    answer.pop_back();
 }
-
 
 vector<string> solution(vector<vector<string>> tickets) {
     vector<string> answer;
-    vector<vector<int>> tickets_to_int;
-    int icn_data = 'I'*100 + 'C'*10 +'N';
 
+    // 오름차순, 정렬한 후
+    sort(tickets.begin(), tickets.end(), less<>());
 
-    vector<int> total_result;
+    // tickets, answer, ICN, 횟수
+    dfs(tickets, answer,"ICN",0);
 
-    // string -> int 형으로 변경
-    for(int i=0;i<tickets.size();i++){
-        // 나중 결과 값을 찾기 위해 사용한다.
-        total_result.push_back(0);
-        vector<int> vc;
-        for(int j=0;j<2;j++){
-            int str_to_int = 0;
-            str_to_int += tickets[i][j][0] * 100;
-            str_to_int += tickets[i][j][1] * 10;
-            str_to_int += tickets[i][j][2];
-            vc.push_back(str_to_int);
-        }
-        tickets_to_int.push_back({vc[0],vc[1]});
-    }
-
-
-    for(int i=1;i<tickets_to_int.size();i++){
-        if(tickets_to_int[i][0] == icn_data){
-            int cur_index = i;
-            vector<int> vc;
-            vc = bfs(tickets_to_int,i);
-
-            int i=0;
-            for(;i<vc.size()+1;i++){
-                if(total_result[i] < vc[i]) break;
-
-            }
-            if(i!=vc.size()+1) total_result = vc;
-        }
-    }
-
-    for(int i=0;i<vc.size()+1;i++){
-        string s;
-
-        s += to_string(total_result[0] / 100);
-        s += to_string(total_result[0] / 10 % 10);
-        s += to_string(total_result[0] % 100 % 10);;
-
-        answer.push_back(s);
-    }
-
-
-
+    answer = total;
 
     return answer;
 }
 
+int main() {
+    vector<vector<string> > tickets;
 
-int airplane = 1001;
+    vector<string> v;
 
-int total[100][20][1001];
-int main(){
-    vector<vector<string>> tickets;
+    v.push_back("ICN");
+    v.push_back("SFO");
 
-    tickets.push_back({"ICN","SFO"});
-    tickets.push_back({"ICN","ATL"});
-    tickets.push_back({"SFO","ATL"});
-    tickets.push_back({"ATL","ICN"});
-    tickets.push_back({"ATL","SFO"});
+    tickets.push_back(v);
 
+    v.clear();
 
-    solution(tickets);
+    v.push_back("ICN");
+    v.push_back("ATL");
 
+    tickets.push_back(v);
 
-    return 0;
+    v.clear();
+
+    v.push_back("SFO");
+    v.push_back("ATL");
+
+    tickets.push_back(v);
+
+    v.clear();
+
+    v.push_back("ATL");
+    v.push_back("ICN");
+
+    tickets.push_back(v);
+
+    v.clear();
+
+    v.push_back("ATL");
+    v.push_back("SFO");
+
+    tickets.push_back(v);
+
+    v.clear();
+
+    vector<string> s = solution(tickets);
+
+    for (int i = 0; i < s.size(); i++) {
+        cout << s[i] << ' ';
+    }
 }
+
